@@ -38,10 +38,12 @@
 </template>
 
 <script>
-import { getRestaurants, getRestaurantMenu } from "../server/db.js";
+import { getRestaurant, getRestaurantMenu } from "../server/db.js";
 
 export default {
   name: "Menu",
+  props : ["id"]
+  ,
   data: () => ({
     menu: {
       title: "",
@@ -49,15 +51,18 @@ export default {
     },
   }),
   methods: {
-    async getAllRestaurants() {
-      const restaurants = await getRestaurants();
-      this.menu.title = restaurants[0].title;
-      const menu = await getRestaurantMenu(restaurants[0].id);
+    async getMenu() {
+      console.log(this.id)
+      const restaurant = await getRestaurant(this.id)
+      this.menu.title = restaurant.title;
+      console.log(this.restaurant)
+      const menu = await getRestaurantMenu(this.id);
+      console.log(menu)
       this.menu.menu_types = menu;
     },
   },
   async created() {
-    await this.getAllRestaurants();
+    await this.getMenu();
   },
 };
 </script>

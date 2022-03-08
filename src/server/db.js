@@ -28,8 +28,17 @@ export const getRestaurants = async () => {
   return res;
 }
 
-export const getRestaurantMenu = async(id) => {
+export const getRestaurant = async (id) => {
   console.log(id)
+  let restaurant = await getDoc(doc(db,"restaurants", id));
+  restaurant = {
+    id : restaurant.id,
+    ...restaurant.data()
+  }
+  return restaurant;
+} 
+
+export const getRestaurantMenu = async(id) => {
   const restaurant = collection(db,"restaurants",id,"menu")
   let menu = await getDocs(restaurant);
   let res = []

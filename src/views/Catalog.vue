@@ -1,28 +1,27 @@
 <template>
   <v-main>
-    <h3>{{ menu.title }}</h3>
     <v-list>
-      <v-list-item v-for="(m, index) in restaurants" :key="index" @click="showmenu(m)">
+      <v-list-item v-for="(r, index) in restaurants" :key="index" @click="showmenu(r.id)">
         <v-list-item-content class="menu">
             <v-row>
               <v-col>
-                <v-img width="100%" height="100%" :src="m.img"></v-img>
+                <v-img width="100%" height="100%" :src="r.img"></v-img>
               </v-col>
               <v-col>
                 <v-row>
                   <v-col class="">
                     <h4 class="items">
-                      {{ m.title }}
+                      {{ r.title }}
                     </h4>
                   </v-col>
                   <v-col  align="right">
-                    <h5 style="margin-top: 10px">{{ m.address }}
+                    <h5 style="margin-top: 10px">{{ r.address }}
                     </h5>
                   </v-col>
                 </v-row>
                 <v-row>
                   <v-list-item-subtitle class="description">{{
-                    m.type
+                    r.type
                   }}</v-list-item-subtitle>
                 </v-row>
               </v-col>
@@ -55,8 +54,9 @@ export default {
       this.menu.menu_types = menu;
     },
 
-    showmenu(r){
-        this.$router.push({name: 'menu', params: {restaurant:r}})
+    showmenu(id){
+      console.log(id)
+        this.$router.push({name: 'menu', params: {id: id}})
     }
   },
   async created() {
