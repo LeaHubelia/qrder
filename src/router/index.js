@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Menu from "../views/Menu.vue";
+import Catalog from "../views/Catalog.vue";
 
 const routes = [
   {
     path: "/menu",
     name: "menu",
     component: Menu,
+  },
+  {
+    path: "/catalog",
+    name: "catalog",
+    component: Catalog,
   },
   {
     path: "/about",
