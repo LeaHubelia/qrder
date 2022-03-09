@@ -2,18 +2,17 @@
   <v-app>
     <v-main>
       <router-view />
+  <NavBar/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Menu from './views/Menu.vue'
-import Orders from './views/Orders.vue'
+import NavBar from '../src/components/NavBar.vue'
 export default {
   name: "App",
   components : {
-    Menu,
-    Orders,
+    NavBar
   },
   data: () => ({
     

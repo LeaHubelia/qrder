@@ -3,9 +3,8 @@
     <v-list>
       <v-list-item v-for="(r, index) in restaurants" :key="index" @click="showmenu(r.id)">
         <v-list-item-content class="menu">
-            <v-row>
               <v-col>
-                <v-img width="100%" height="100%" :src="r.img"></v-img>
+                <v-img width="100%" height="100%" style="margin-bottom:20px" :src="r.img"></v-img>
               </v-col>
               <v-col>
                 <v-row>
@@ -25,7 +24,6 @@
                   }}</v-list-item-subtitle>
                 </v-row>
               </v-col>
-            </v-row>
             <v-divider />
         </v-list-item-content>
       </v-list-item>
