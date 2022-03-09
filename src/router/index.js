@@ -7,11 +7,13 @@ const routes = [
     path: "/menu",
     name: "menu",
     component: Menu,
+    props : true,
   },
   {
     path: "/catalog",
     name: "catalog",
     component: Catalog,
+    props : true,
   },
   {
     path: "/about",
