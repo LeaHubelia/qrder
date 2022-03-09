@@ -1,8 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Orders from "../views/Orders.vue";
 import Menu from "../views/Menu.vue";
 import Catalog from "../views/Catalog.vue";
 
+
 const routes = [
+  {
+    path: "/orders",
+    name: "orders",
+    component: Orders,
+    props : true,
+  },
   {
     path: "/menu",
     name: "menu",

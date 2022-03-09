@@ -15,6 +15,19 @@ const firebaseApp = initializeApp(config);
 
 const db = getFirestore(firebaseApp);
 const restaurantsCollection = collection(db,"restaurants")
+const ordersCollection = collection(db,"orders")
+
+export const getOrders = async () => {
+  const Orders = await getDocs(ordersCollection);
+  let ord = []
+  Orders.forEach((doc) => {
+    ord.push({
+      id : doc.id,
+      ...doc.data()
+    })
+  });
+  return ord;
+}
 
 export const getRestaurants = async () => {
   const Restaurants = await getDocs(restaurantsCollection);

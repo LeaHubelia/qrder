@@ -8,10 +8,12 @@
 
 <script>
 import Menu from './views/Menu.vue'
+import Orders from './views/Orders.vue'
 export default {
   name: "App",
   components : {
     Menu,
+    Orders,
   },
   data: () => ({
     
