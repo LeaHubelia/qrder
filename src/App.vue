@@ -2,8 +2,9 @@
   <v-app>
     <v-main>
       <router-view />
-  <NavBar/>
     </v-main>
+      <NavBar/>
+
   </v-app>
 </template>
 

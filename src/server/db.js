@@ -42,7 +42,6 @@ export const getRestaurants = async () => {
 }
 
 export const getRestaurant = async (id) => {
-  console.log(id)
   let restaurant = await getDoc(doc(db,"restaurants", id));
   restaurant = {
     id : restaurant.id,
@@ -63,7 +62,6 @@ export const getRestaurantMenu = async(id) => {
   });
   const type = [];
   let menuDictionary = {}
-  console.log(res)
   res.map(r => {
     if(!type.includes(r.type)){
       const temp = r.type

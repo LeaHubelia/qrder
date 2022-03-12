@@ -1,6 +1,6 @@
 <template>
-  <v-main>
-      <h3><v-icon @click="Back" style="margin-right:20px">mdi-arrow-left-thick</v-icon>Restaurant Information</h3>
+  <v-main :class="isLandscape ? this.$vuetify.display.md ? 'landscape' : this.$vuetify.display.lg ? 'landscapeLargeScreen' : 'landscapeXLScreen' : ''">
+      <h3 v-if="!isLandscape"><v-icon  style="margin-right:20px" @click="Back" >mdi-arrow-left-thick</v-icon>Restaurant Information</h3>
       <v-col align="center">
     <v-col class="info">
       <p>{{ currentRestaurant.title }}</p>
@@ -31,6 +31,10 @@ export default {
       type: String,
       default: "",
     },
+    isLandscape : {
+      type : Boolean,
+      default: false,
+    }
   },
   data() {
     return {
@@ -49,7 +53,7 @@ export default {
         this.$router.push({path: "/"})
     },
     showMenu(){
-        this.$router.push({name: 'menu', params: {id: this.id}})
+        this.$router.push({name: 'menu', params: {id: this.id, isLandscape: this.isLandscape}})
     }
   },
   async created() {
@@ -60,6 +64,16 @@ export default {
         }
         this.currentRestaurant.priceLevel = dollars;
   },
+  watch : {
+    async id(value) {
+      this.currentRestaurant = await this.getCurrentRestaurant(value);
+        let dollars = '';
+        for(let i=0; i<this.currentRestaurant.priceLevel; i++){
+          dollars +='$'
+        }
+        this.currentRestaurant.priceLevel = dollars;
+    }
+  }
 };
 </script>
 
@@ -75,5 +89,23 @@ export default {
   background-color: black;
   color: white !important;
   width: 80%;
+}
+.landscape {
+  margin-left : 15% !important;
+  padding: 0px !important;
+  /* width : 88% */
+}
+.landscapeLargeScreen {
+  margin-left : 24% !important;
+  padding: 0px !important;
+  /* width : 70% */
+}
+
+.landscapeXLScreen {
+  margin-left : 30% !important;
+  padding: 0px !important;
+}
+.v-main__wrap {
+  position: inherit !important;
 }
 </style>

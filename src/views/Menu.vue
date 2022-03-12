@@ -42,7 +42,7 @@ import { getRestaurant, getRestaurantMenu } from "../server/db.js";
 
 export default {
   name: "Menu",
-  props : ["id"]
+  props : ["id", "isLandscape"]
   ,
   data: () => ({
     menu: {
@@ -54,13 +54,16 @@ export default {
     async getMenu() {
       const restaurant = await getRestaurant(this.id)
       this.menu.title = restaurant.title;
-      console.log(this.restaurant)
       const menu = await getRestaurantMenu(this.id);
-      console.log(menu)
       this.menu.menu_types = menu;
     },
     Back(){
-      this.$router.push({name: 'description', params: {id: this.id}})
+      console.log(this.isLandscape && this.$vuetify.display.mdAndUp)
+      if(this.isLandscape && this.$vuetify.display.mdAndUp){
+        this.$router.push({name: 'catalog'})
+      }
+      else
+        this.$router.push({name: 'description', params: {id: this.id}})
     }
   },
   async created() {

@@ -31,7 +31,6 @@ export default defineComponent({
       }
   },
   created() {
-    console.log('HERE',this.lat, this.lng )
     this.center = { lat: this.lat, lng: this.lng }
   },
   watch : {

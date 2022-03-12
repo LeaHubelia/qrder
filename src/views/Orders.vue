@@ -60,7 +60,6 @@ export default {
   methods: {
     async getAllOrders() {
       this.orders = await getOrders(this.id);
-      console.log(order)
     },
   },
   async created() {
