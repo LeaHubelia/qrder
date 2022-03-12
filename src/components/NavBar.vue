@@ -2,28 +2,27 @@
   <v-bottom-navigation 
   v-model="value" 
     color="blue"
-    dark
-    background-color="blue-grey"
+    style="background-color:black"
     >
-    <v-btn @click="value='Catalog'" to="/" class="navBtn" value="Catalog">
+    <v-btn style="color:white" @click="value='Catalog'" to="/"  value="Catalog">
       <v-icon>mdi-food</v-icon>
       <span>Catalog</span>
 
     </v-btn>
 
-    <v-btn  @click="value='Scan'" to="/scan"  class="navBtn"  value="Scan">
+    <v-btn style="color:white" disabled @click="value='Scan'"    value="Scan">
       <v-icon>mdi-qrcode</v-icon>
       <span>Scan</span>
 
     </v-btn>
 
-    <v-btn @click="value='Orders'" to="/orders"  class="navBtn" value="Orders">
+    <v-btn style="color:white" to="/orders" @click="value='Orders'" value="Orders">
       <v-icon>mdi-history</v-icon>
             <span>Orders</span>
 
     </v-btn>
 
-    <v-btn to="/profile" @click="value='Profile'" class="navBtn" value="Profile">
+    <v-btn style="color:white" disabled  @click="value='Profile'" value="Profile">
       <v-icon>mdi-account</v-icon>
             <span>Profile</span>
 
@@ -33,9 +32,15 @@
 
 <script>
   export default {
-    data: () => ({ value: 'Catalog' }),
+    data: () => ({ value: 'Catalog', color : "black" }),
   }
 </script>
+
+<style scoped>
+.btnColor {
+  color: "white";
+}
+</style>
 
 
 
