@@ -52,7 +52,6 @@ export default {
   }),
   methods: {
     async getMenu() {
-      console.log(this.id)
       const restaurant = await getRestaurant(this.id)
       this.menu.title = restaurant.title;
       console.log(this.restaurant)
@@ -61,7 +60,7 @@ export default {
       this.menu.menu_types = menu;
     },
     Back(){
-      this.$router.push({path:'/'})
+      this.$router.push({name: 'description', params: {id: this.id}})
     }
   },
   async created() {

@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-list>
-      <v-list-item v-for="(r, index) in restaurants" :key="index" @click="showmenu(r.id)">
+      <v-list-item v-for="(r, index) in restaurants" :key="index" @click="showinfo(r.id)">
         <v-card :elevation="1" outlined class="menu" >
                 <v-img  width="100%" :src="r.img"></v-img>
               <v-col style="padding-left:20px; padding-right:20px">
@@ -51,9 +51,8 @@ export default {
       })
     },
 
-    showmenu(id){
-      console.log(id)
-        this.$router.push({name: 'menu', params: {id: id}})
+    showinfo(id){
+        this.$router.push({name: 'description', params: {id: id}})
     },
 
     trimAddress(ad){
