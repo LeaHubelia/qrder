@@ -16,7 +16,7 @@
 
     </v-btn>
 
-    <v-btn style="color:white" to="/orders" @click="value='Orders'" value="Orders">
+    <v-btn style="color:white" to="/orders" disabled @click="value='Orders'" value="Orders">
       <v-icon>mdi-history</v-icon>
             <span>Orders</span>
 
