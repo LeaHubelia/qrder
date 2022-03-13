@@ -3,6 +3,8 @@ import Orders from "../views/Orders.vue";
 import Menu from "../views/Menu.vue";
 import Catalog from "../views/Catalog.vue";
 import RestaurantDescription from "../views/RestaurantDescription.vue";
+import Account from "../views/Account.vue";
+import EditAccount from "../views/EditAccount.vue";
 
 const routes = [
   {
@@ -29,6 +31,18 @@ const routes = [
     component: RestaurantDescription,
     props : true,
   },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Account,
+    props: true
+  },
+  {
+    path: "/profile/edit",
+    name: "Edit Profile",
+    component: EditAccount,
+    props: true
+  }
 ];
 
 const router = createRouter({
