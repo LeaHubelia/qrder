@@ -75,11 +75,4 @@ export const getRestaurantMenu = async(id) => {
 
   })
   return menuDictionary;
-  // return res;
-  // menu = await collection(menu,"menu");
-  // menu = await getDocs(menu)
-  // console.log(menu);
-  // menu_type.forEach((doc) => {
-
-  // })
 }

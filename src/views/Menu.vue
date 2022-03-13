@@ -7,30 +7,11 @@
         <v-list-item-content class="menu">
           <v-list-item-title class="title" >{{ m.title }}</v-list-item-title>
           <v-divider />
-          <v-card :elevation="1" outlined v-for="item in m.menu_items" :key="item.name" style="padding:20px; margin-top:20px;">
-            <v-row>
-              <v-col>
-                <v-img width="100%" height="100%" :src="item.img"></v-img>
-              </v-col>
-              <v-col>
-                <v-row>
-                  <v-col class="">
-                    <h4 class="items">
-                      {{ item.name }}
-                    </h4>
-                  </v-col>
-                  <v-col class=".col-6 .col-md-4" align="right">
-                    <h5 style="margin-top: 10px">{{ item.price }} $ CA</h5>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-list-item-subtitle class="description">{{
-                    item.description
-                  }}</v-list-item-subtitle>
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-card>
+              <v-card :elevation="1" outlined v-for="item in m.menu_items" :key="item.name" style="padding:20px; margin-top:20px;">
+
+          <MenuItemCard :item="item"/>
+                    </v-card>
+
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -39,11 +20,13 @@
 
 <script>
 import { getRestaurant, getRestaurantMenu } from "../server/db.js";
-
+import MenuItemCard from "../components/MenuItemCard.vue"
 export default {
   name: "Menu",
-  props : ["id", "isLandscape"]
-  ,
+  props : ["id", "isLandscape"],
+  components : {
+    MenuItemCard
+  },
   data: () => ({
     menu: {
       title: "",
@@ -58,7 +41,6 @@ export default {
       this.menu.menu_types = menu;
     },
     Back(){
-      console.log(this.isLandscape && this.$vuetify.display.mdAndUp)
       if(this.isLandscape && this.$vuetify.display.mdAndUp){
         this.$router.push({name: 'catalog'})
       }
@@ -73,11 +55,11 @@ export default {
 </script>
 
 <style>
-.header {
+/* .header {
   color: white;
   background-color: black;
   padding: 20px;
-}
+} */
 .title {
   font-size: 20px;
   font-weight: 700;
@@ -86,12 +68,5 @@ export default {
 .menu {
   width: 100%;
 }
-.items {
-  margin-left: -12px;
-  width: 110px;
-  margin-top: 10px;
-}
-.description {
-  margin-bottom:20px;
-}
+
 </style>
