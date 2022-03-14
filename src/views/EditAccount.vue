@@ -54,7 +54,7 @@ import { getUserInfo } from "../server/db.js";
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .profile {
         &.edit {
             .avatar-wrapper {

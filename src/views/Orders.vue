@@ -69,11 +69,7 @@ export default {
 </script>
 
 <style>
-h3 {
-  color: white;
-  background-color: black;
-  padding: 20px;
-}
+
 .title {
   font-size: 20px;
   font-weight: 700;
@@ -82,16 +78,7 @@ h3 {
 .menu {
   width: 100%;
 }
-.items {
-  margin-left: -12px;
-  width: 110px;
-  margin-top: 10px;
-}
-.description {
-  margin-bottom:20px;
-}
-.image {
-  padding: 2%;
-}
+
+
 
 </style>

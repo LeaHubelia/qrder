@@ -15,6 +15,7 @@ const firebaseApp = initializeApp(config);
 
 const db = getFirestore(firebaseApp);
 const restaurantsCollection = collection(db,"restaurants")
+/*--Orders
 const ordersCollection = collection(db,"orders")
 
 export const getOrders = async () => {
@@ -28,7 +29,7 @@ export const getOrders = async () => {
   });
   return ord;
 }
-
+*/
 export const getRestaurants = async () => {
   const Restaurants = await getDocs(restaurantsCollection);
   let res = []

@@ -1,15 +1,16 @@
 <template>
-  <h3>
+  <div class="top-bar">
     <v-icon @click="Back" style="margin-right: 20px"
       >mdi-arrow-left-thick</v-icon
-    >{{ menu.title }}
-  </h3>
+    ><h3>{{ menu.title }}</h3>
+  </div>
   <v-list>
     <v-list-item v-for="(m, index) in menu.menu_types" :key="index">
       <v-list-item-content class="menu">
-        <v-list-item-title class="title">{{ m.title }}</v-list-item-title>
+        <v-list-item-title class="item-types">{{ m.title }}</v-list-item-title>
         <v-divider />
         <v-card
+          class="item-card"
           :elevation="1"
           outlined
           v-for="item in m.menu_items"
@@ -58,13 +59,9 @@ export default {
 };
 </script>
 
-<style>
-/* .header {
-  color: white;
-  background-color: black;
-  padding: 20px;
-} */
-.title {
+<style scoped>
+
+.item-types {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 5px;
@@ -72,4 +69,15 @@ export default {
 .menu {
   width: 100%;
 }
+.top-bar {
+  color: white;
+  background-color: black;
+  padding: 20px;
+  display: flex;
+}
+@media screen and (min-width: 780px) {
+  .item-card{ max-height: 270px; }
+  .item-types{ font-size: 30px;}
+}
+
 </style>
