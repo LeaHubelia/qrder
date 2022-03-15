@@ -1,6 +1,6 @@
 <template>
   <v-main :class="isLandscape ? this.$vuetify.display.md ? 'landscape' : this.$vuetify.display.lg ? 'landscapeLargeScreen' : 'landscapeXLScreen' : ''">
-      <h3 v-if="!isLandscape"><v-icon  style="margin-right:20px" @click="Back" >mdi-arrow-left-thick</v-icon>Restaurant Information</h3>
+      <h3 v-if="!isLandscape" class="top-bar"><v-icon  style="margin-right:20px" @click="Back" >mdi-arrow-left-thick</v-icon>Restaurant Information</h3>
       <v-col align="center">
     <v-col class="info">
       <p>{{ currentRestaurant.title }}</p>
@@ -39,11 +39,18 @@ export default {
   data() {
     return {
       currentRestaurant: {},
+      windowHeight: window.innerHeight,
+      windowWidth : window.innerWidth,
     };
   },
   components: {
     Map,
   },
+  mounted() {
+        this.$nextTick(() => {
+            window.addEventListener('resize', this.onScreenResize);
+        })
+    },
   methods: {
     async getCurrentRestaurant(id) {
       const temp = await getRestaurant(id);
@@ -54,15 +61,24 @@ export default {
     },
     showMenu(){
         this.$router.push({name: 'menu', params: {id: this.id, isLandscape: this.isLandscape}})
-    }
+    },
+    onScreenResize() {
+            this.windowHeight = window.innerHeight;
+            this.windowWidth = window.innerWidth;
+            if(this.windowWidth > this.windowHeight && this.$vuetify.display.smAndUp){
+              this.$router.push({name:"catalog", params: {BackchosenRestaurantId:this.id}})
+            }
+        }
   },
   async created() {
-    this.currentRestaurant = await this.getCurrentRestaurant(this.id);
-        let dollars = '';
-        for(let i=0; i<this.currentRestaurant.priceLevel; i++){
-          dollars +='$'
-        }
-        this.currentRestaurant.priceLevel = dollars;
+    if(this.id.length > 0){
+      this.currentRestaurant = await this.getCurrentRestaurant(this.id);
+      let dollars = '';
+      for(let i=0; i<this.currentRestaurant.priceLevel; i++){
+        dollars +='$'
+      }
+      this.currentRestaurant.priceLevel = dollars;
+    }
   },
   watch : {
     async id(value) {
@@ -78,6 +94,12 @@ export default {
 </script>
 
 <style>
+.top-bar {
+  color: white;
+  background-color: black;
+  padding: 20px;
+  display: flex;
+}
 .info {
   max-width: 80%;
   border: 1px black solid !important;

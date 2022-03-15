@@ -49,7 +49,7 @@ h2{
   margin-left: -12px;
 }
 .resto-card {
-  width: 500px;
+  width: 100%;
 }
 .description {
   margin-bottom: 20px;

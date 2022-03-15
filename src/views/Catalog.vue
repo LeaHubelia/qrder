@@ -12,7 +12,7 @@
       </v-list-item>
     </v-list>
     </v-navigation-drawer>
-  <v-main style="padding : 0px !important;" class="hidden-sm-and-down" >
+  <v-main style="padding : 0px !important;" >
     <RestaurantDescription :id ="chosenRestaurantId" :isLandscape="isLandscape"/>
   </v-main>
   
@@ -36,13 +36,24 @@ export default {
     RestaurantCard,
     RestaurantDescription
   },
+  props : {
+    BackchosenRestaurantId : {
+      type : String,
+      default : ''
+    }
+  },
   data: () => ({
     restaurants :[],
-    chosenRestaurantId : 0,
+    chosenRestaurantId : '',
     windowHeight: window.innerHeight,
     windowWidth : window.innerWidth,
     isLandscape : false,
   }),
+  watch : {
+    BackchosenRestaurantId(value) {
+      this.chosenRestaurantId = value;
+    }
+  },
   methods: {
     async getAllRestaurants() {
       this.restaurants = await getRestaurants();
@@ -62,7 +73,7 @@ export default {
             this.$router.push({name: 'description', params: {id: id}})
         }
     },
-    onResize() {
+    onScreenResize() {
             this.windowHeight = window.innerHeight;
             this.windowWidth = window.innerWidth;
             this.isLandscape = this.windowWidth > this.windowHeight;
@@ -71,12 +82,13 @@ export default {
   },
   mounted() {
         this.$nextTick(() => {
-            window.addEventListener('resize', this.onResize);
+            window.addEventListener('resize', this.onScreenResize);
         })
     },
   async created() {
     await this.getAllRestaurants();
-    this.chosenRestaurantId = this.restaurants[0].id;
+    if(this.BackchosenRestaurantId.length === 0)
+      this.chosenRestaurantId = this.restaurants[0].id;
     this.isLandscape = this.windowWidth > this.windowHeight;
   },
 };
