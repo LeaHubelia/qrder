@@ -81,7 +81,6 @@ export default {
   },
   async created() {
     await this.getAllRestaurants(); 
-    console.log(this.BackchosenRestaurantId)
     if(this.BackchosenRestaurantId.length === 0)
       this.chosenRestaurantId = this.restaurants[0].id;
     else
