@@ -1,7 +1,7 @@
 <template>
   <GoogleMap
   api-key="AIzaSyCor8yJBG0TfkFlEWG0D2G4SRbN6-PfVrU"
-  style="width: 90%; height: 400px; margin-left:20px "
+  style="width: 100%; height: 100%; "
   :center="center"
   :zoom="18"
   >

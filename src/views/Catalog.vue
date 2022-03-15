@@ -12,7 +12,7 @@
       </v-list-item>
     </v-list>
     </v-navigation-drawer>
-  <v-main style="padding : 0px !important;" >
+  <v-main class="large-screen">
     <RestaurantDescription :id ="chosenRestaurantId" :isLandscape="isLandscape"/>
   </v-main>
   
@@ -89,4 +89,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .v-main.large-screen {
+    padding-left: 40% !important;
+  }
+</style>
 

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main :class="this.isLandscape && this.$vuetify.display.mdAndUp ? 'large-screen': ''" style="padding-left : 0px;">
       <router-view />
     </v-main>
       <NavBar/>
@@ -15,7 +15,10 @@ export default {
     NavBar
   },
   data: () => ({
-    
+    isLandscape : false
   }),
+  created() {
+    this.isLandscape = window.innerWidth > window.innerHeight;
+  }
 };
 </script>

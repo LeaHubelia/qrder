@@ -1,9 +1,9 @@
 <template>
-  <v-main :class="isLandscape ? this.$vuetify.display.md ? 'landscape' : this.$vuetify.display.lg ? 'landscapeLargeScreen' : 'landscapeXLScreen' : ''">
+  <v-main class="desc" :class="isLandscape ? 'landscape' : 'mobile'">
       <h3 v-if="!isLandscape" class="top-bar"><v-icon  style="margin-right:20px" @click="Back" >mdi-arrow-left-thick</v-icon>Restaurant Information</h3>
-      <v-col align="center">
+    <v-col align="center" class="info-wrapper">
     <v-col class="info">
-      <p>{{ currentRestaurant.title }}</p>
+      <h2>{{ currentRestaurant.title }}</h2>
       <span>{{ currentRestaurant.address }}</span>
       <v-row style="margin-left: 2px; margin-top: 10px">
         <p>{{ currentRestaurant.type }}</p>
@@ -11,11 +11,11 @@
         <p>{{ currentRestaurant.priceLevel }}</p>
       </v-row>
     </v-col>
-    <v-col align="center">
+    <v-col align="center" class="map">
       <Map :lat="currentRestaurant.lat" :lng="currentRestaurant.lng" />
     </v-col>
     <v-btn @click="showMenu" class="descbutton">GO TO MENU</v-btn>
-      </v-col>
+    </v-col>
   </v-main>
 </template>
 <script>
@@ -86,40 +86,55 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+
+.v-main.desc {
+  padding: 0 !important;
+}
+
 .top-bar {
   color: white;
   background-color: black;
   padding: 20px;
   display: flex;
+  height: 68px;
 }
+
+.info-wrapper.v-col {
+  .mobile & {
+    height: calc(100vh - 68px - 56px)
+  }
+
+  .landscape &, .landscapeLargeScreen &, .landscapeXLScreen & {
+    height: calc(100vh - 56px);
+  }
+
+  position: relative;
+  padding: 32px 10%;
+}
+
 .info {
-  max-width: 80%;
   border: 1px black solid !important;
   padding: 20px !important;
-  margin: 20px;
   text-align: left;
 }
+
+.v-col.map {
+  padding: 0;
+  height: 65%;
+  margin-top: 20px;
+}
+
 .descbutton {
   background-color: black;
   color: white !important;
   width: 80%;
-}
-.landscape {
-  margin-left : 15% !important;
-  padding: 0px !important;
-  /* width : 88% */
-}
-.landscapeLargeScreen {
-  margin-left : 24% !important;
-  padding: 0px !important;
-  /* width : 70% */
+
+  position: absolute;
+  bottom: 32px;
+  left: 10%;
 }
 
-.landscapeXLScreen {
-  margin-left : 30% !important;
-  padding: 0px !important;
-}
 .v-main__wrap {
   position: inherit !important;
 }
