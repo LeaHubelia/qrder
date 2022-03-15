@@ -48,7 +48,7 @@ export default {
     },
     Back() {
       if (this.isLandscape && this.$vuetify.display.mdAndUp) {
-        this.$router.push({ name: "catalog" });
+        this.$router.push({ name: "catalog", params: {BackchosenRestaurantId:this.id }});
       } else
         this.$router.push({ name: "description", params: { id: this.id } });
     },

@@ -47,11 +47,6 @@ export default {
     chosenRestaurantId : '',
     isLandscape : false,
   }),
-  watch : {
-    BackchosenRestaurantId(value) {
-      this.chosenRestaurantId = value;
-    }
-  },
   methods: {
     async getAllRestaurants() {
       this.restaurants = await getRestaurants();
@@ -81,10 +76,16 @@ export default {
             window.addEventListener('resize', this.onScreenResize);
         })
     },
+  unmounted() { 
+      window.removeEventListener('resize', this.onScreenResize); 
+  },
   async created() {
-    await this.getAllRestaurants();
+    await this.getAllRestaurants(); 
+    console.log(this.BackchosenRestaurantId)
     if(this.BackchosenRestaurantId.length === 0)
       this.chosenRestaurantId = this.restaurants[0].id;
+    else
+      this.chosenRestaurantId = this.BackchosenRestaurantId;
     this.isLandscape = window.innerWidth > window.innerHeight;
   },
 };

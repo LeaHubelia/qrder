@@ -33,12 +33,13 @@ export const getOrders = async () => {
 export const getRestaurants = async () => {
   const Restaurants = await getDocs(restaurantsCollection);
   let res = []
-  Restaurants.forEach((doc) => {
-    res.push({
-      id : doc.id,
-      ...doc.data()
-    })
-  });
+  if(Restaurants)
+    Restaurants.forEach((doc) => {
+      res.push({
+        id : doc.id,
+        ...doc.data()
+      })
+    });
   return res;
 }
 

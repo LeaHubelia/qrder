@@ -51,6 +51,9 @@ export default {
             window.addEventListener('resize', this.onScreenResize);
         })
     },
+    unmounted() { 
+      window.removeEventListener('resize', this.onScreenResize); 
+  },
   methods: {
     async getCurrentRestaurant(id) {
       const temp = await getRestaurant(id);
@@ -63,7 +66,7 @@ export default {
         this.$router.push({name: 'menu', params: {id: this.id, isLandscape: this.isLandscape}})
     },
     onScreenResize() {
-            if(window.innerWidth > window.innerHeight && this.$vuetify.display.smAndUp){
+            if(window.innerWidth > window.innerHeight && this.$vuetify.display.mdAndUp){
               this.$router.push({name:"catalog", params: {BackchosenRestaurantId:this.id}})
             }
         }
