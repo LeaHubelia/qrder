@@ -50,23 +50,23 @@
 </template>
 
 <script>
-import { getOrders } from "../server/db.js";
+// import { getOrders } from "../server/db.js";
 
-export default {
-  name: "Orders",
-  data: () => ({
-    orders :[]
-  }),
-  methods: {
-    async getAllOrders() {
-      this.orders = await getOrders(this.id);
-    },
-  },
-  async created() {
-    await this.getAllOrders();
-  },
-};
-</script>
+// export default {
+//   name: "Orders",
+//   data: () => ({
+//     orders :[]
+//   }),
+//   methods: {
+//     async getAllOrders() {
+//       this.orders = await getOrders(this.id);
+//     },
+//   },
+//   async created() {
+//     await this.getAllOrders();
+//   },
+// };
+// </script>
 
 <style>
 

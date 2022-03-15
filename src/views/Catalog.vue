@@ -45,8 +45,6 @@ export default {
   data: () => ({
     restaurants :[],
     chosenRestaurantId : '',
-    windowHeight: window.innerHeight,
-    windowWidth : window.innerWidth,
     isLandscape : false,
   }),
   watch : {
@@ -74,9 +72,7 @@ export default {
         }
     },
     onScreenResize() {
-            this.windowHeight = window.innerHeight;
-            this.windowWidth = window.innerWidth;
-            this.isLandscape = this.windowWidth > this.windowHeight;
+            this.isLandscape = window.innerWidth > window.innerHeight;
         }
 
   },
@@ -89,7 +85,7 @@ export default {
     await this.getAllRestaurants();
     if(this.BackchosenRestaurantId.length === 0)
       this.chosenRestaurantId = this.restaurants[0].id;
-    this.isLandscape = this.windowWidth > this.windowHeight;
+    this.isLandscape = window.innerWidth > window.innerHeight;
   },
 };
 </script>

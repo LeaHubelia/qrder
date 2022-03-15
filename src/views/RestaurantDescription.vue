@@ -21,7 +21,11 @@
 <script>
 import Map from "../components/Map.vue";
 import { getRestaurant } from "../server/db.js";
+import {priceLevel} from "../imports/helpers.js"
 export default {
+  components: {
+    Map,
+  },
   props: {
     restaurant: {
       type: Object,
@@ -39,12 +43,8 @@ export default {
   data() {
     return {
       currentRestaurant: {},
-      windowHeight: window.innerHeight,
-      windowWidth : window.innerWidth,
+      
     };
-  },
-  components: {
-    Map,
   },
   mounted() {
         this.$nextTick(() => {
@@ -63,9 +63,7 @@ export default {
         this.$router.push({name: 'menu', params: {id: this.id, isLandscape: this.isLandscape}})
     },
     onScreenResize() {
-            this.windowHeight = window.innerHeight;
-            this.windowWidth = window.innerWidth;
-            if(this.windowWidth > this.windowHeight && this.$vuetify.display.smAndUp){
+            if(window.innerWidth > window.innerHeight && this.$vuetify.display.smAndUp){
               this.$router.push({name:"catalog", params: {BackchosenRestaurantId:this.id}})
             }
         }
@@ -73,21 +71,13 @@ export default {
   async created() {
     if(this.id.length > 0){
       this.currentRestaurant = await this.getCurrentRestaurant(this.id);
-      let dollars = '';
-      for(let i=0; i<this.currentRestaurant.priceLevel; i++){
-        dollars +='$'
-      }
-      this.currentRestaurant.priceLevel = dollars;
+      this.currentRestaurant.priceLevel = priceLevel(this.currentRestaurant.priceLevel);
     }
   },
   watch : {
     async id(value) {
       this.currentRestaurant = await this.getCurrentRestaurant(value);
-        let dollars = '';
-        for(let i=0; i<this.currentRestaurant.priceLevel; i++){
-          dollars +='$'
-        }
-        this.currentRestaurant.priceLevel = dollars;
+      this.currentRestaurant.priceLevel = priceLevel(this.currentRestaurant.priceLevel);
     }
   }
 };
