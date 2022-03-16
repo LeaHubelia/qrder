@@ -23,5 +23,6 @@
   ],
   "start_url": ".",
   "display": "fullscreen",
-  "background_color": "#000000"
+  "background_color": "#000000",
+  "description" : "Application QRDER"
 }
