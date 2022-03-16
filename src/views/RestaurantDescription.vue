@@ -121,7 +121,7 @@ export default {
 
 .v-col.map {
   padding: 0;
-  height: 65%;
+  height: 55%;
   margin-top: 20px;
 }
 
@@ -129,9 +129,8 @@ export default {
   background-color: black;
   color: white !important;
   width: 80%;
-
   position: absolute;
-  bottom: 32px;
+  margin-top: 20px;
   left: 10%;
 }
 
