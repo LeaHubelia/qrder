@@ -3,6 +3,7 @@ import Orders from "../views/Orders.vue";
 import Menu from "../views/Menu.vue";
 import Catalog from "../views/Catalog.vue";
 import RestaurantDescription from "../views/RestaurantDescription.vue";
+import Scan from "../views/Scan.vue";
 
 const routes = [
   {
@@ -27,6 +28,12 @@ const routes = [
     path: "/desc",
     name: "description",
     component: RestaurantDescription,
+    props : true,
+  },
+  {
+    path: "/scan",
+    name: "scan",
+    component: Scan,
     props : true,
   },
 ];

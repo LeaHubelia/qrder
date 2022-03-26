@@ -10,7 +10,7 @@
 
     </v-btn>
 
-    <v-btn style="color:white" disabled @click="value='Scan'"    value="Scan">
+    <v-btn style="color:white" to="/scan" @click="value='Scan'"    value="Scan">
       <v-icon>mdi-qrcode</v-icon>
       <span>Scan</span>
 
