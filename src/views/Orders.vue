@@ -1,84 +1,66 @@
 <template>
-  <v-main>
-    <v-list>
-      <v-list-item v-for="(o, index) in orders" :key="index">
-        <v-list-item-content class="menu">
-            <v-row>
-              <v-col class="image">
-                <v-img width="100%" height="100%" :src="o.img"></v-img>
-              </v-col>
-              <v-col>
-                <v-row>
-                  <v-col>
-                    <v-list-item-title>
-                      {{ o.restaurantName }}
-                    </v-list-item-title>
-                  </v-col>                
-                </v-row>
-                <v-row>
-                  <v-col md="8" sm="8">
-                    <v-list-item-subtitle>
-                      {{ o.description }}
-                    </v-list-item-subtitle>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col>
-                    <v-list-item-subtitle>
-                      {{ o.date }} - {{ o.total }} $ CA
-                    </v-list-item-subtitle>
-                  </v-col>
-                </v-row>
-              </v-col>
-              <v-col align-self="center">
-                <div class="text-center align">
-                  <v-btn
-                    rounded
-                    color="normal"
-                    dark
-                  >
-                    Details
-                  </v-btn>
-                </div>
-              </v-col>
-            </v-row>
-            <v-divider />
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-main>
+  <div class="top-bar">
+    <h3>Previous orders</h3>
+  </div>
+  <v-list>
+    <v-list-item v-for="(o, index) in orders" :key="index">
+      <v-list-item-content class="order">
+          <v-card
+          class="order-card"
+          :elevation="1"
+          outlined
+          style="padding: 20px; margin-top: 20px"
+        >
+          <OrderCard :order="o" />
+        </v-card>
+      </v-list-item-content>
+    </v-list-item>
+  </v-list>
 </template>
 
 <script>
-// import { getOrders } from "../server/db.js";
+import { getOrdersSortedByDate } from "../server/db.js";
+import OrderCard from "../components/OrderCard.vue";
+export default {
+  name: "Orders",
+  props: {
+    order: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  components: {
+    OrderCard,
+  },
+  
+  data: () => ({
+    orders :[]
+  }),
+  methods: {
+    async getAllOrders() {
+      this.orders = await getOrdersSortedByDate(this.id);
+    },
+  },
+  async created() {
+    await this.getAllOrders();
+  },
+};
+</script>
 
-// export default {
-//   name: "Orders",
-//   data: () => ({
-//     orders :[]
-//   }),
-//   methods: {
-//     async getAllOrders() {
-//       this.orders = await getOrders(this.id);
-//     },
-//   },
-//   async created() {
-//     await this.getAllOrders();
-//   },
-// };
-// </script>
+<style scoped>
 
-<style>
-
-.title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-.menu {
+.order {
   width: 100%;
 }
-
-
+.top-bar {
+  color: white;
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 780px) {
+  .order-card{ max-height: 270px; }
+}
 
 </style>

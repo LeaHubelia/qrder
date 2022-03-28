@@ -15,21 +15,21 @@ const firebaseApp = initializeApp(config);
 
 const db = getFirestore(firebaseApp);
 const restaurantsCollection = collection(db,"restaurants")
-/*--Orders
 const ordersCollection = collection(db,"orders")
 
-export const getOrders = async () => {
+export const getOrdersSortedByDate = async () => {
   const Orders = await getDocs(ordersCollection);
   let ord = []
+  //Orders.sort((a,b)=> a.date - b.date);
   Orders.forEach((doc) => {
     ord.push({
       id : doc.id,
       ...doc.data()
     })
   });
-  return ord;
+   return ord;
 }
-*/
+
 export const getRestaurants = async () => {
   const Restaurants = await getDocs(restaurantsCollection);
   let res = []
